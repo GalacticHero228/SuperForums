@@ -15,7 +15,8 @@ def index(request):
 def topics(request):
     topics = Topic.objects.filter(owner=request.user).order_by('date_added')
     context = {'topics': topics}
-    return render(request, 'topics.html', context)
+    return render(request, 'forums/topics.html', context)
+
 
 @login_required
 def topic(request, topic_id):
@@ -25,7 +26,7 @@ def topic(request, topic_id):
 
     entries = topic.entry_set.order_by('-date_added')
     context = {'topic': topic, 'entries': entries}
-    return render(request, 'topic.html', context)
+    return render(request, 'forums/topic.html', context)
 
 @login_required
 def new_topic(request):
@@ -40,7 +41,7 @@ def new_topic(request):
             return HttpResponseRedirect(reverse('forum:topics'))
 
     context = {'form': form}
-    return render(request, 'new_topic.html', context)
+    return render(request, 'forums/new_topic.html', context)
 
 @login_required
 def new_entry(request, topic_id):
@@ -59,7 +60,7 @@ def new_entry(request, topic_id):
             return HttpResponseRedirect(reverse('forum:topic', args=[topic_id]))
 
     context = {'topic': topic, 'form': form}
-    return render(request, 'new_entry.html', context)
+    return render(request, 'forums/new_entry.html', context)
 
 @login_required
 def edit_entry(request, entry_id):
@@ -77,4 +78,4 @@ def edit_entry(request, entry_id):
             return HttpResponseRedirect(reverse('forum:topic', args=[topic.id]))
 
     context = {'entry': entry, 'topic': topic, 'form': form}
-    return render(request, 'edit_entry.html', context)
+    return render(request, 'forums/edit_entry.html', context)

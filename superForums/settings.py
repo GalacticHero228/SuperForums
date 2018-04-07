@@ -16,7 +16,7 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PROJECT_PATH = os.path.realpath(os.path.dirname(__file__))
 TEMPLATE_DIRS = (
-    os.path.realpath(PROJECT_PATH + '\templates\superForums'),
+    os.path.realpath(PROJECT_PATH + '\templates'),
 )
 
 TEMPLATE_LOADERS = (
@@ -76,7 +76,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            BASE_DIR + '\\superForums\\templates\\superForums\\',
+            BASE_DIR + '\\superForums\\templates\\',
         ],
         'APP_DIRS': True,
         'OPTIONS': {
