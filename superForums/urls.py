@@ -19,6 +19,6 @@ from django.conf.urls import include, url
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    url(r'^users/', include('users.urls', namespace='users')),
-    url(r'', include('forum.urls', namespace='forum')),
+    url(r'^users/', include('apps.users.urls', namespace='users')),
+    url(r'', include('apps.forum.urls', namespace='forum')),
 ]
