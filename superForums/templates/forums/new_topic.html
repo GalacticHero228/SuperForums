@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block header %}
+<h3>Add A Topic</h3>
+{% endblock header %}
+{% block content %}
+<br>
+    <form action="{% url 'forum:new_topic' %}" method='post'>
+        {%csrf_token%}
+        <div class="text-center">
+            {{ form.as_p }}
+            <br>
+            <button name="submit" class="btn btn-success">add topic</button>
+        </div>
+    </form>
+
+{% endblock content %}

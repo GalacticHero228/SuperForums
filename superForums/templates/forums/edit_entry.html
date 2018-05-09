@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block header %}
+<h3>Editing</h3>
+<p><a href="{% url 'forum:topic' topic.id %}">{{ topic }}</a></p>
+<p>{{ entry.title }}</p>
+{% endblock header %}
+{% block content %}
+<div>
+ <form action="{% url 'forum:edit_entry' entry.id %}" method='post'>
+    <div class="form-group">
+        {% csrf_token %}
+        <p><label for="id_text"></label></p>
+        <div class="text-center">
+            <p>{{ form.title.as_hidden }}</p> 
+            <p>{{ form.text }} </p>
+        </div>
+    </div>
+    <div class="text-center">
+        <button name="submit" class="btn btn-success">Save Changes</button>
+    </div>
+ </form>
+</div>
+ <br><br>
+    <div class="fieldWrapper mx-auto" style="width:200px;">
+        <a href="{% url 'forum:deleted_entry' entry.id %}" class="btn btn-danger" style="width:200px;">Delete This Entry</a>
+    </div>
+{% endblock content %}

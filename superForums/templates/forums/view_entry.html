@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+    {% block header %}
+    <h3>{{ entry.title }}</h3>
+    <span>Added on {{ entry.date_added|date:'M d, Y H:i' }} For:</span>
+    <h5>{{ topic }}</h5>
+    {% endblock header %}
+{% block content %}
+<br><br>
+
+
+<div class="text-center">
+    <span>
+        {{ entry.text }}
+    </span>
+</div>
+ 
+<hr>
+{% if user.is_authenticated %}
+<div>
+    <form action="{% url 'forum:view_entry' entry.id %}" method='post'>
+        <div class="form-group">
+        {%csrf_token%}
+            {{ form.text }}
+        </div>
+        <button name="submit" class="btn btn-primary entry">Add A Comment</button>
+    </form>
+</div>
+{% else %}
+<div class= "text-center">
+    <p>
+        <a href="{% url 'users:login' %}" class="btn btn-primary">Login</a> 
+        OR 
+        <a href="{% url 'users:register' %}" class="btn btn-primary">Register</a>  to add a comment.
+    </p>
+</div>
+{% endif %}
+<hr>
+    {% for c in comment %}
+        <div class="card">
+            <div class="card-header"><span>{{ c.owner }}</span><span class="float-right">{{ c.date_added }}</span> </div>
+            <div class="card-body">{{ c.text }}</div>
+        </div>
+        <br>
+    {% empty %}
+        <span>No Comment</span>
+    {% endfor %}
+
+
+{% endblock content %}

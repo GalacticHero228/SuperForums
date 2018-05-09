@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block header %}
+    <h1>Forums</h1>
+    {% if user.is_authenticated %}
+    <p><a href="{% url 'forum:new_topic' %}" class="btn btn-primary">Add a new topic</a></p>
+    {% endif %}
+{% endblock header %}
+{% block content %}
+ 
+ <div>
+    {% for cat in category %}
+    <div class="card">
+        <div class="card-header"><h3 class="panel-title">{{ cat }}</h3></div>
+        <!--Place header in for loop as only appearing on first loop
+            Then, adding the link to new_entry using the current topic should be available-->
+            {% for topic in topics %}
+            <ul class="list-group list-group-flush">
+                {% if topic.category == cat %}
+                <li class="list-group-item"><a href="{% url 'forum:topic' topic.id %}">{{ topic }}</a></li>
+                {% endif %}
+            </ul>
+            {% empty %}
+                <div>No topics have been added yet.</div>
+            {% endfor %}
+    </div>
+    {% endfor %}
+</div>
+<div>
+    <div class="card">
+        <div class="card-header"><h3 class="panel-title">Miscellaneous</h3></div>
+        
+        {% for topic in topics %}
+        <ul class="list-group list-group-flush"></ul>
+            {% if topic.category == null %}
+            <li class="list-group-item"><a href="{% url 'forum:topic' topic.id %}">{{ topic }}</a></li>
+            {% endif %}
+        </ul>
+        {% empty %}
+            <div>No topics have been added yet.</div>
+        {% endfor %}
+    </div>
+</div>
+ 
+{% endblock content %}

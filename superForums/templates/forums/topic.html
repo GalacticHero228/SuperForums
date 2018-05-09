@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block header %}
+<div>
+        <h1> {{ topic }}</h1>
+        <h4> {{ category }}</h4>
+</div>
+{% if user.is_authenticated %}
+    <p>
+        <a href="{% url 'forum:new_entry' topic.id %}" class="btn btn-primary" >Add A New Entry</a>
+    </p>
+ {% else %}
+    <p>
+        <a href="{% url 'users:login' %}" class="btn btn-primary">Login</a> OR <a href="{% url 'users:register' %}" class="btn btn-primary">Register</a> <br> to add an entry.
+    </p>
+ {% endif %}
+{% endblock header %}
+
+{% block content %}
+<div>
+    {% for entry in entries %}
+        <table class="table table-striped">
+            <tbody>
+                <tr>
+                        <td style="width:50%;"><span><a href="{% url 'forum:view_entry' entry.id %}">{{ entry.title|linebreaks }}</a></span></td>
+                        <td style="width:25%;"><span class="float-right">{{ entry.date_added|date:'M d, Y H:i' }}</span></td>
+                    {% if entry.owner == user %}
+                        <td style="width:25%;"><span class="float-right"><a href="{% url 'forum:edit_entry' entry.id %}">Edit Entry</a></span></td>
+                    {% else %}
+                    {% endif %}
+                    
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    {% empty %}
+        <div>
+            <p>There are no entries for this topic yet.</p>
+        </div>
+    
+ {% endfor %}
+</div>
+{% endblock content %}

@@ -16,9 +16,9 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PROJECT_PATH = os.path.realpath(os.path.dirname(__file__))
 
-TEMPLATE_DIRS = (
-    os.path.realpath(PROJECT_PATH + '\templates'),
-)
+#TEMPLATE_DIRS = (
+#    os.path.realpath(PROJECT_PATH + '\templates'),
+#)
 
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.load_template_source',
@@ -38,6 +38,7 @@ ALLOWED_HOSTS = []
 
 # My settings
 LOGIN_URL = '/users/login/'
+
 # Settings for django-bootstrap3
 BOOTSTRAP3 = {
  'include_jquery': True,
@@ -54,7 +55,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     #Third Party Apps
-    'bootstrap3',
+    'bootstrap4',
 
     #my apps
     'apps.forum',
@@ -77,7 +78,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            BASE_DIR + '\\superForums\\templates\\',
+            BASE_DIR + '//superForums//templates//',
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -142,3 +143,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+

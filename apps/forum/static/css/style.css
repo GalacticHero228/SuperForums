@@ -1,0 +1,27 @@
+.page-header{
+    text-align: center;
+    margin-top: 50px;
+}
+
+.card{
+    margin:25px;
+}
+
+.entry{
+    margin: 0 auto;
+    display: block;
+}
+
+.btn-contain-cnt > p{
+    text-align: center;
+}
+
+.btn-contain-cnt > button{
+    margin: 0 auto;
+    display: block;
+}
+
+.commentContain{
+    background-color: #cff3e2;
+    margin: 15px;
+}
